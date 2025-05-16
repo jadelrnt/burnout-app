@@ -619,13 +619,6 @@ def main():
                     
         st.markdown("---")
         if st.button("🔄 Recommencer avec un nouveau profil"):
-            components.html(
-                """
-                <script>
-                    window.location.reload();
-                </script>
-                """,
-                height=0,
-            )
+            st.experimental_rerun()
 if __name__ == "__main__":
     main()  
