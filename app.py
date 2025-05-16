@@ -606,6 +606,5 @@ def main():
         st.markdown("---")
         if st.button("🔄 Recommencer avec un nouveau profil"):
             st.experimental_rerun()
-            return
 if __name__ == "__main__":
     main()  
