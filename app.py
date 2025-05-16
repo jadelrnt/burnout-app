@@ -551,8 +551,8 @@ if not genre_autre:
         missing_vars = X_input.columns[X_input.isnull().any()].tolist()
         missing_labels = [var_to_label.get(v, v) for v in missing_vars]
         st.warning(f"⚠️ Veuillez répondre à toutes les questions. Questions manquantes : {', '.join(missing_labels)}")
-        else:
-            if st.button("🧮 Calculer mon score de burn-out"):
+    else:
+        if st.button("🧮 Calculer mon score de burn-out"):
             # --- Calcul de la probabilité ---
             X_input["const"] = 1  # Ajoute constante
             X_input = X_input[list(coefficients.keys())]  # Garde seulement les variables du modèle
@@ -601,6 +601,7 @@ if not genre_autre:
         - Soyez à l’écoute de vous-même : en cas de changement d’humeur, fatigue persistante ou perte de sens, n’hésitez pas à consulter.
         - Continuez à **vous questionner sur le sens de votre travail**, et à ajuster vos objectifs personnels et professionnels.
         """)
+                
     st.markdown("---")
     if st.button("🔄 Recommencer avec un nouveau profil"):
         st.experimental_rerun()
