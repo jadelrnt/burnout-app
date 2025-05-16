@@ -4,6 +4,7 @@ import streamlit as st
 import joblib
 import pandas as pd
 import statsmodels.api as sm
+import streamlit.components.v1 as components
 
 # --- CONFIGURATION DE LA PAGE ---
 st.set_page_config(page_title="Burn-out au travail", page_icon="🧠", layout="centered")
@@ -618,6 +619,13 @@ def main():
                     
         st.markdown("---")
         if st.button("🔄 Recommencer avec un nouveau profil"):
-            st.rerun()
+            components.html(
+                """
+                <script>
+                    window.location.reload();
+                </script>
+                """,
+                height=0,
+            )
 if __name__ == "__main__":
     main()  
