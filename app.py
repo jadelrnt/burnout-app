@@ -616,9 +616,6 @@ def main():
             - Soyez à l’écoute de vous-même : en cas de changement d’humeur, fatigue persistante ou perte de sens, n’hésitez pas à consulter.
             - Continuez à **vous questionner sur le sens de votre travail**, et à ajuster vos objectifs personnels et professionnels.
             """)
-                    
-        st.markdown("---")
-        if st.button("🔄 Recommencer avec un nouveau profil"):
-            st.experimental_rerun()
+
 if __name__ == "__main__":
     main()  
