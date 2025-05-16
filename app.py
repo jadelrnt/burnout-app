@@ -7,7 +7,7 @@ import statsmodels.api as sm
 import streamlit.components.v1 as components
 
 # --- CONFIGURATION DE LA PAGE ---
-st.set_page_config(page_title="Burn-out au travail", page_icon="🧠", layout="centered")
+st.set_page_config(page_title="Évaluation du burn-out au travail", page_icon="🧠", layout="centered")
 st.markdown("<style>footer {visibility: hidden;}</style>", unsafe_allow_html=True)
 
 
@@ -567,7 +567,7 @@ def main():
             missing_labels = [var_to_label.get(v, v) for v in missing_vars]
             st.warning(f"⚠️ Veuillez répondre à toutes les questions. Questions manquantes : {', '.join(missing_labels)}")
         else:
-            if st.button("🧮 Calculer mon score de burn-out"):
+            if st.button("🔍 Lancer l’analyse de mon risque d’épuisement professionnel"):
                 # --- Calcul de la probabilité ---
                 X_input["const"] = 1  # Ajoute constante
                 X_input = X_input[list(coefficients.keys())]  # Garde seulement les variables du modèle
