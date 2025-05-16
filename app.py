@@ -7,6 +7,8 @@ import statsmodels.api as sm
 
 # --- CONFIGURATION DE LA PAGE ---
 st.set_page_config(page_title="Burn-out au travail", page_icon="🧠", layout="centered")
+st.markdown("<style>footer {visibility: hidden;}</style>", unsafe_allow_html=True)
+
 
 def main():
     # --- TITRE ---
@@ -139,7 +141,7 @@ def main():
     
     
         ##revmensc_tranche##
-        # Question sur le revenu mensuel
+       # --- Question sur le revenu mensuel ---
         revenu = st.selectbox(
             "Quel est votre revenu mensuel net moyen (en €) ?",
             options=[
@@ -151,17 +153,28 @@ def main():
                 "> 3000"
             ]
         )
+        
+        # Initialisation des dummies à 0
         revmensc_dummies = {
             "revmensc_tranche_1351–1700": 0,
             "revmensc_tranche_1701–2250": 0,
             "revmensc_tranche_2251–3000": 0,
             "revmensc_tranche_> 3000": 0
         }
-    
+        
+        # Dictionnaire de correspondance
+        revenu_mapping = {
+            "1351–1700": "revmensc_tranche_1351–1700",
+            "1701–2250": "revmensc_tranche_1701–2250",
+            "2251–3000": "revmensc_tranche_2251–3000",
+            "> 3000": "revmensc_tranche_> 3000"
+        }
+        
         if revenu == "Je préfère ne pas répondre":
             st.warning("Vous avez choisi de ne pas répondre à cette question. La prédiction pourrait être légèrement moins précise.")
-        elif revenu != "≤ 1350":
-            revmensc_dummies[f"revmensc_tranche_{revenu}"] = 1
+        elif revenu in revenu_mapping:
+            revmensc_dummies[revenu_mapping[revenu]] = 1
+        # sinon revenu == "≤ 1350", aucune dummy n’est activée (référence)
     
         st.markdown("---")
     
@@ -605,6 +618,6 @@ def main():
                     
         st.markdown("---")
         if st.button("🔄 Recommencer avec un nouveau profil"):
-            st.experimental_rerun()
+            st.rerun()
 if __name__ == "__main__":
     main()  
