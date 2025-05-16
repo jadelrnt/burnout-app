@@ -551,7 +551,8 @@ if not genre_autre:
         missing_vars = X_input.columns[X_input.isnull().any()].tolist()
         missing_labels = [var_to_label.get(v, v) for v in missing_vars]
         st.warning(f"⚠️ Veuillez répondre à toutes les questions. Questions manquantes : {', '.join(missing_labels)}")
-    else:
+        if st.button("🔄 Réinitialiser les réponses"):
+            st.experimental_rerun()
         if st.button("🧮 Calculer mon score de burn-out"):
             # --- Calcul de la probabilité ---
             X_input["const"] = 1  # Ajoute constante
